@@ -45,7 +45,7 @@
 ;; === evenNumbers ===
 
 (define (evenNumbers lst)
-	(if (null? lst)
+  (if (null? lst)
     '()
     (if (list? (car lst))
         (cons (evenNumbers (car lst)) (evenNumbers (cdr lst)))
@@ -68,8 +68,8 @@
   (if (null? lst)
       '()
       (if (list? (car lst))
-      (append (nestedReverse (cdr lst)) (list (nestedReverse (car lst)))
-      (append (nestedReverse (cdr lst)) (list (car lst))
+          (append (nestedReverse (cdr lst)) (list (nestedReverse (car lst)))
+          (append (nestedReverse (cdr lst)) (list (car lst))
       )                          
     )
   )
