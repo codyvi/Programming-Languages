@@ -33,26 +33,11 @@
 
 ;; === unique ===
 
-(define (helper lst)
-  (if (null? lst)
-      '()
-      (if (not (exist? (car lst) (cdr lst)))
-          (cons (car lst) (helper (cdr lst)))
-          (helper (cdr lst))
-              )
-      )
-) 
-
-
-(define (exist? x lst)
- (if (equal? #f (member x lst))
-      #f
-      #t
-      )
-)
-
 (define (unique lst)
-  	(helper lst)
+  (if (null? lst)
+      null
+      (cons (car lst) (unique (filter (lambda (x) (not (equal? x (car lst)))) (cdr lst))))
+      )
 )
 
 (display "=== unique ===\n")
