@@ -93,7 +93,7 @@
 )
 
 (define (sold-units id sales)
-  	(apply + (map (lambda (p) (cadar p)) (filter  (lambda (z) (not(null? z))) (map (lambda (x) (filter (lambda (y) (equal? id (car y))) (cdr x))) sales))))
+  (apply + (map cadar (filter  (lambda (z) (not(null? z))) (map (lambda (x) (filter (lambda (y) (equal? id (car y))) (cdr x))) sales))))
 )
 
 (display "=== sold-units ===\n")
