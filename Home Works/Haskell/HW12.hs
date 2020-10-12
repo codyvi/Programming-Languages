@@ -34,19 +34,29 @@ myFilter fun (h:t) = if fun h
 -- === crossover ===
 
 crossover :: [Char] -> [Char] -> Int -> ([Char], [Char])
-crossover _ _ _ = error "Not yet implemented\n"
+crossover [] [] _ = ([],[])
+crossover (h1:t1) (h2:t2) x = if x == 1
+    then (h1:t2, h2:t1)
+    else let (a, b) = crossover t1 t2 (x - 1) in
+        (h1:a, h2:b)
 
 -- === xSort ===
 
 xSort :: [(String, Int, Int)] -> [(String, Int, Int)]
-xSort _ = error "Not yet implemented\n"
+xSort [] = []
+xSort ((fTeam,fPoints,fGoals):rest) = let
+    left = filter(\(team, points, goals) -> if (points == fPoints) then (goals >= fGoals) else (points > fPoints)) rest
+    right = filter(\(team, points, goals) -> if (points == fPoints) then (goals < fGoals) else (points < fPoints)) rest
+    in 
+        (xSort left) ++ [(fTeam, fPoints, fGoals)] ++ (xSort right)
 
 -- === treeSum ===
 
 data Tree = Tree Int Tree Tree | E deriving Show
 
 treeSum :: Tree -> Int
-treeSum _ = error "Not yet implemented\n"
+treeSum E = 0
+treeSum (Tree root left right) = (treeSum left) + root + (treeSum right)
 
 -- === Test cases ===
 
